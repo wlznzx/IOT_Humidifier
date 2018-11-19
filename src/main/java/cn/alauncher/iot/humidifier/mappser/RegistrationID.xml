@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<!-- 
+	public void insertRegistrationID(RegistrationID id);
+	public void updateRegistrationID(RegistrationID id);
+	public void deleteRegistrationID(int device_id);
+	public List<RegistrationID> getRegistrationID(int id);
+	
+	public long id;
+	public long device_id;
+ -->
+<mapper namespace="cn.alauncher.iot.humidifier.mappser.IRegistrationID">
+
+    <resultMap type="RegistrationID" id="RegistrationIDList">
+		<result column="id" property="id" />
+		<result column="device_id" property="device_id" />
+	</resultMap>
+	
+	<select id="getRegistrationID" resultMap="RegistrationIDList">
+		select * from registrationid
+		where id=#{id}
+	</select>
+	
+	<select id="getRegistrationIDByDevID" resultMap="RegistrationIDList">
+		select * from registrationid
+		where device_id=#{device_id}
+	</select>
+	
+	<select id="getRegistrationIDBy" parameterType="RegistrationID" resultType="RegistrationID">
+		select * from registrationid
+		where id=#{id} and device_id=#{device_id} limit 1
+	</select>
+
+    <insert id="insertRegistrationID" parameterType="RegistrationID">
+        INSERT INTO registrationid(id,device_id)
+        VALUES(#{id}, #{device_id})
+    </insert>
+    
+    <update id="updateRegistrationID" parameterType="RegistrationID">
+		update registrationid
+		<set>
+			<if test="device_id != null">
+				device_id = #{device_id},
+			</if>
+		</set>
+		where id=#{id}
+	</update>
+
+    <delete id="deleteRegistrationID" parameterType="RegistrationID">
+		delete from registrationid
+		where id=#{id} and device_id=#{device_id}
+	</delete>
+
+</mapper>

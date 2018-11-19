@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.alauncher.iot.humidifier.mappser.IHumidifierInfo">
+
+    <select id="getHumidifierInfo" parameterType="int"
+        resultType="cn.alauncher.iot.humidifier.modle.HumidifierInfo">
+        SELECT *
+        FROM humidifierinfo
+        WHERE id = #{infoId}
+    </select>
+
+	
+
+    <insert id="insertHumidifierInfo" parameterType="cn.alauncher.iot.humidifier.modle.HumidifierInfo">
+        INSERT INTO humidifierinfo(temperature,humidity)
+        VALUES(#{temperature}, #{humidity})
+    </insert>
+<!-- 
+    <select id="getUserList" resultType="cn.alauncher.User">
+        SELECT * FROM USER
+    </select>
+    
+    <delete id="deleteUser" parameterType="int">
+        DELETE FROM USER WHERE id = #{id}
+    </delete>
+ -->
+    <update id="updateHumidifierInfo" parameterType="cn.alauncher.iot.humidifier.modle.HumidifierInfo">
+        UPDATE humidifierinfo
+        SET
+        temperature=
+        #{temperature},
+        humidity = #{humidity}
+        WHERE
+        id =
+        #{id}
+    </update>
+
+    
+
+</mapper>

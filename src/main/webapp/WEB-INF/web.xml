@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"  
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee  
+          http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"  
+          version="3.0">
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+	</welcome-file-list>
+	<!-- -->
+	<servlet>
+		<servlet-name>Temperature</servlet-name>
+		<servlet-class>cn.alauncher.iot.humidifier.TemperatureServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Temperature</servlet-name>
+		<url-pattern>/Temperature</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>RegistrationIDServlet</servlet-name>
+		<servlet-class>cn.alauncher.iot.humidifier.RegistrationIDServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>RegistrationIDServlet</servlet-name>
+		<url-pattern>/RegistrationID</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>DeviceServlet</servlet-name>
+		<servlet-class>cn.alauncher.iot.humidifier.DeviceServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DeviceServlet</servlet-name>
+		<url-pattern>/Device</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>ActionServlet</servlet-name>
+		<servlet-class>cn.alauncher.iot.humidifier.ActionServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ActionServlet</servlet-name>
+		<url-pattern>/Action</url-pattern>
+	</servlet-mapping>
+</web-app>

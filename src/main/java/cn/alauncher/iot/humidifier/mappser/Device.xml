@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<!-- 
+	public vodevice_id insertDevice(Device device);
+	public vodevice_id updateDevice(Device device);
+	public vodevice_id deleteDevice(int device_id);
+	public Device getDevice(int device_id);
+	
+	public String device_device_id;
+	public int temperature;
+	// 电源灯 value:0/1
+	public int pwr_led;
+	// 加热指示灯 value:0/1
+	public int heat_led;
+	// 探头1温度 
+	public int detecter1_temp;
+	// 探头2温度
+	public int detecter2_temp;
+	/*
+		0 : 没有异常;
+		1 : 高温异常;
+		2 : 低温异常;
+		3 : 无水;
+		4 : 温度失控;
+	*/
+	public int err_code;
+ -->
+<mapper namespace="cn.alauncher.iot.humidifier.mappser.IDevice">
+	<select id="getDevice" parameterType="String" resultType="Device">
+		select * from device
+		where device_id = #{device_id} limit 1
+	</select>
+
+    <insert id="insertDevice" parameterType="Device">
+        INSERT INTO device(device_id,temperature,pwr_led,heat_led,detecter1_temp,detecter2_temp,err_code)
+        VALUES(#{device_id}, #{temperature},#{pwr_led},#{heat_led},#{detecter1_temp},#{detecter2_temp},#{err_code})
+    </insert>
+    
+    <update id="updateDevice" parameterType="Device">
+		update device
+		<set>
+			<if test="temperature != null">
+				temperature = #{temperature},
+			</if>
+			<if test="pwr_led != null">
+				pwr_led = #{pwr_led},
+			</if>
+			<if test="heat_led != null">
+				heat_led = #{heat_led},
+			</if>
+			<if test="detecter1_temp != null">
+				detecter1_temp = #{detecter1_temp},
+			</if>
+			<if test="detecter2_temp != null">
+				detecter2_temp = #{detecter2_temp},
+			</if>
+			<if test="err_code != null">
+				err_code = #{err_code},
+			</if>
+		</set>
+		where device_id=#{device_id}
+	</update>
+
+    <delete id="deleteDevice" parameterType="int">
+		delete from device
+		where device_id=#{device_id}
+	</delete>
+
+</mapper>

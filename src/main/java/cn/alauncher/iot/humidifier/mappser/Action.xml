@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<!-- 
+	public void insertAction(Action action);
+	public int deleteAction(String device_id);
+	public Action getAction(String device_id);
+
+	public String device_id;
+	public String action;
+	public String extra;
+ -->
+<mapper namespace="cn.alauncher.iot.humidifier.mappser.IAction">
+	<select id="getAction" parameterType="String" resultType="Action">
+		select * from action
+		where device_id = #{device_id} limit 1
+	</select>
+
+    <insert id="insertAction" parameterType="Action">
+        insert into action(device_id,action,extra)
+        values(#{device_id}, #{action},#{extra})
+    </insert>
+ <!--  
+    <update id="updateDevice" parameterType="Device">
+		update device
+		<set>
+			<if test="temperature != null">
+				temperature = #{temperature},
+			</if>
+			<if test="humidity != null">
+				humidity = #{humidity},
+			</if>
+			<if test="low_temperature != null">
+				low_temperature = #{low_temperature},
+			</if>
+			<if test="high_temperature != null">
+				high_temperature = #{high_temperature},
+			</if>
+		</set>
+		where id=#{id}
+	</update>
+ -->
+    <delete id="deleteAction" parameterType="Action">
+		delete from action
+		where device_id=#{device_id} and action=#{action} and extra=#{extra}
+	</delete>
+
+</mapper>
